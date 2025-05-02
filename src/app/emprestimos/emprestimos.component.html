@@ -1,0 +1,36 @@
+<form [formGroup]="form" (ngSubmit)="sendEmail($event)" class="form-container"> 
+  <div class="box-img"><img src="./img.jpg" alt="logo-bm"></div> 
+    
+  <input formControlName="nome" name="name" placeholder="Nome completo" required /> 
+  <input formControlName="cpf" name="cpf" placeholder="CPF" mask="000.000.000-00" required /> 
+  <input formControlName="rg" name="rg" placeholder="RG" mask="00.000.000-0" required  /> 
+  <input type="date" formControlName="nascimento" name="dtnascimento" placeholder="Data de nascimento" required /> 
+  <input formControlName="email" name="email" placeholder="E-mail" required /> 
+  <input formControlName="telefone" name="phone" placeholder="Telefone" mask="(00) 00000-0000"  /> 
+  <input formControlName="cep" name="cep" placeholder="CEP" mask="0000-0000"  /> 
+  <input formControlName="endereco" name="end" placeholder="Endereço" /> 
+  <input formControlName="numero" name="numero" placeholder="Número" /> 
+  <input formControlName="complemento" name="comp" placeholder="Complemento (opcional)" /> 
+  <input formControlName="empresa" name="emp" placeholder="Empresa que trabalha" /> 
+  <input formControlName="cargo" name="cargo" placeholder="Cargo" /> 
+  <input formControlName="renda" name="renda" placeholder="Renda mensal" mask="separator.2" thousandSeparator="." decimalMarker="," prefix="R$ "  /> 
+  
+  <label>Valor solicitado:</label> 
+    <select formControlName="valorSolicitado" (change)="calcular()"> 
+      <option *ngFor="let v of valores" [value]="v">{{ v | currency:'BRL' }}</option> 
+    </select> 
+    
+  <div *ngIf="form.value.valorSolicitado"> 
+    <p><strong>Juros (30%):</strong> {{ juros | currency:'BRL' }}</p> 
+    <p><strong>Total a pagar em 15 dias:</strong> {{ valorTotal | currency:'BRL' }}</p> 
+    <p><strong>Multa por atraso:</strong> R$ 50,00 por dia</p> 
+  </div> 
+  
+  <label class="aceite"> 
+    <input type="checkbox" formControlName="aceite" />
+     Aceito os termos: Pagar juros de 30% após 15 dias, e multa de R$ 50,00/dia por atraso. 
+  </label> 
+  
+  <button type="submit" [disabled]="form.invalid">Enviar</button> 
+
+</form>
