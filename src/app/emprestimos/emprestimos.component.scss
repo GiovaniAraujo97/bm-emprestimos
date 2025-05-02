@@ -19,7 +19,11 @@
 
 img { 
   width: 80px;
-} 
+}
+
+.nome {
+  font-size: 16px;
+}
 
 input, select { 
   padding: 0.8rem; 
@@ -27,7 +31,8 @@ input, select {
   border: none; 
   background: #2c2c3c; 
   color: #fff; 
-  font-size: 1rem; 
+  font-size: 1rem;
+  height: 42px  ;
 } 
 
 input[type="file"] { 
